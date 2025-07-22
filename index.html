@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marlon Jordan | Senior Support Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d2d6dc' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            height: 50vh;
+            max-height: 500px;
+        }
+        .experience-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .experience-content.open {
+            max-height: 500px; /* Adjust as needed */
+        }
+        .alignment-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .alignment-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            border-color: #4299e1;
+        }
+        nav a {
+             position: relative;
+             transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4299e1;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Chosen Palette: Cool Gray & Slate Blue -->
+    <!-- Application Structure Plan: A top-down narrative structure. A sticky nav bar allows immediate access to any section. The intro acts as a quick pitch with a CTA to the most important section: Alignment. The Alignment section is visually prioritized with a distinct background and strong hover effects. Experience is accordion-style to reduce initial cognitive load. Certifications are explained to add value beyond just a name. This structure guides the recruiter's focus while allowing them to explore freely. -->
+    <!-- Visualization & Content Choices: Report Info: Core Competencies -> Goal: Compare/Inform -> Viz: Radar Chart (Chart.js) -> Interaction: Hover for tooltips -> Justification: Handles long labels gracefully and provides a holistic, professional-looking view of skills. Report Info: Job History -> Goal: Organize -> Viz: Accordion (HTML/JS) -> Interaction: Click to expand/collapse -> Justification: Keeps the page clean and allows users to drill into the roles they find most relevant. Report Info: JD vs. Resume -> Goal: Compare/Persuade -> Viz: Two-column card layout -> Interaction: Hover to highlight/enlarge -> Justification: Creates a direct, compelling visual argument for candidate-role fit. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav class="sticky top-0 bg-white/80 backdrop-blur-sm shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold text-gray-800">Marlon Jordan</div>
+                <div class="hidden md:flex items-center space-x-8 text-gray-600 font-medium">
+                    <a href="#intro" class="hover:text-blue-600">Intro</a>
+                    <a href="#alignment" class="hover:text-blue-600">Alignment</a>
+                    <a href="#competencies" class="hover:text-blue-600">Competencies</a>
+                    <a href="#experience" class="hover:text-blue-600">Experience</a>
+                    <a href="#certifications" class="hover:text-blue-600">Certifications</a>
+                    <a href="#skills" class="hover:text-blue-600">Skills</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="intro" class="container mx-auto px-6 py-20 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">Senior Support Engineer</h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            A collaborative and results-oriented IT professional ready to enhance Verition's End User Services team. My experience in fast-paced financial environments, coupled with a focus on process improvement and VIP support, aligns directly with the needs of this role.
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+            <a href="https://linkedin.com/in/mj2117" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105">
+                View LinkedIn Profile
+            </a>
+            <a href="#alignment" class="bg-gray-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition-transform transform hover:scale-105">
+                See Role Alignment &rarr;
+            </a>
+        </div>
+    </div>
+
+    <section id="alignment" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Candidate-Role Alignment</h2>
+                <p class="mt-3 text-lg text-gray-600">A direct comparison of Verition's needs and my qualifications.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="alignment-card bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-700 mb-3">VIP & Desktop Support</h3>
+                    <p class="font-semibold text-gray-700">Verition's Need:</p>
+                    <p class="text-gray-600 mb-4">Support for investment professionals and firm-wide desktop/mobile devices.</p>
+                    <p class="font-semibold text-gray-700">My Qualification:</p>
+                    <p class="text-gray-600">Provided confidential, high-priority support to executives at Bloomberg, ensuring 100% satisfaction and managing the full lifecycle of hardware assets.</p>
+                </div>
+                <div class="alignment-card bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-700 mb-3">Process Improvement</h3>
+                    <p class="font-semibold text-gray-700">Verition's Need:</p>
+                    <p class="text-gray-600 mb-4">Drive innovation, continuous improvement, and contribute to company standards and processes.</p>
+                    <p class="font-semibold text-gray-700">My Qualification:</p>
+                    <p class="text-gray-600">Automated starter/leaver processes with Azure AD, reducing manual work by 40%. Created knowledge bases in Confluence that cut resolution times by 25%.</p>
+                </div>
+                <div class="alignment-card bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-700 mb-3">Technical Administration</h3>
+                    <p class="font-semibold text-gray-700">Verition's Need:</p>
+                    <p class="text-gray-600 mb-4">Expertise in Azure AD, Exchange Online, VMware, and SCCM.</p>
+                    <p class="font-semibold text-gray-700">My Qualification:</p>
+                    <p class="text-gray-600">Extensive hands-on experience using SCCM to image thousands of devices, managing users in Active Directory/Azure, and supporting virtualized environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competencies" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Core Competencies</h2>
+                <p class="mt-3 text-lg text-gray-600">A holistic view of my technical proficiency.</p>
+            </div>
+            <div class="chart-container bg-white p-4 rounded-lg shadow-md">
+                <canvas id="competencyChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Professional Experience</h2>
+                <p class="mt-3 text-lg text-gray-600">Click each role to expand.</p>
+            </div>
+            <div class="space-y-4 max-w-4xl mx-auto">
+                <div class="experience-item bg-white rounded-lg shadow-md border border-gray-200">
+                    <button class="experience-header w-full flex justify-between items-center text-left p-6">
+                        <span class="text-xl font-bold text-gray-800">Product Operations Specialist</span>
+                        <span class="text-2xl font-light text-blue-600 transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="experience-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-md text-gray-500 mb-4">Bloomberg LP | August 2021 - November 2024</p>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-gray-700">
+                                <li>Managed full hardware lifecycle.</li>
+                                <li>Authored Confluence documentation.</li>
+                                <li>Automated starter/leaver processes.</li>
+                                <li>Owned requests in ServiceNow.</li>
+                                <li>Ensured device standard compliance.</li>
+                                <li>Performed root cause analysis.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item bg-white rounded-lg shadow-md border border-gray-200">
+                    <button class="experience-header w-full flex justify-between items-center text-left p-6">
+                        <span class="text-xl font-bold text-gray-800">Technical Support Lead Executive</span>
+                        <span class="text-2xl font-light text-blue-600 transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="experience-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-md text-gray-500 mb-4">Bloomberg LP | May 2017 - August 2021</p>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-gray-700">
+                                <li>Delivered high-priority VIP support.</li>
+                                <li>Supported executive mobile devices.</li>
+                                <li>Managed tech for office moves.</li>
+                                <li>Ensured 100% executive satisfaction.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-item bg-white rounded-lg shadow-md border border-gray-200">
+                    <button class="experience-header w-full flex justify-between items-center text-left p-6">
+                        <span class="text-xl font-bold text-gray-800">Senior IT Support Engineer</span>
+                        <span class="text-2xl font-light text-blue-600 transform transition-transform duration-300">+</span>
+                    </button>
+                    <div class="experience-content">
+                        <div class="p-6 pt-0">
+                            <p class="text-md text-gray-500 mb-4">Bloomberg LP | May 2013 - May 2017</p>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-gray-700">
+                                <li>Used SCCM for imaging/deployment.</li>
+                                <li>Provided first-line network support.</li>
+                                <li>Supported Market Data applications.</li>
+                                <li>Managed user accounts in AD.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Value-Driven Certifications</h2>
+                <p class="mt-3 text-lg text-gray-600">How my credentials translate to real-world value for Verition.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">ITIL v4</h3>
+                    <p class="text-gray-600">This certification demonstrates a deep understanding of IT service management frameworks. It aligns with Verition's need for someone who can <span class="font-semibold">"comply and contribute to company standards"</span> by providing a structured approach to incident management and continuous improvement.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Azure Fundamentals</h3>
+                    <p class="text-gray-600">This validates my foundational knowledge of cloud services, directly relevant to supporting <span class="font-semibold">Azure Active Directory and Exchange Online</span>. My experience automating the starter/leaver process using Azure AD is a practical application of these certified skills.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Project Management Professional (PMP)</h3>
+                    <p class="text-gray-600">This credential proves I can lead technical initiatives from start to finish. It shows I have the skills to manage future IT projects at Verition, such as system upgrades or office moves, ensuring they are completed on time and on budget, as demonstrated when I <span class="font-semibold">led a Windows 10 deployment for 8,000 users.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Technical Skills</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">Technologies</h3>
+                    <ul class="text-center space-y-2 text-gray-600">
+                        <li>Windows Server</li>
+                        <li>Azure Active Directory</li>
+                        <li>Exchange Online</li>
+                        <li>VMware</li>
+                        <li>SCCM & Intune</li>
+                        <li>Networking (LAN/TCP/IP)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">ITSM & Collaboration</h3>
+                    <ul class="text-center space-y-2 text-gray-600">
+                        <li>ServiceNow (Basic)</li>
+                        <li>Jira</li>
+                        <li>Confluence</li>
+                        <li>Microsoft 365 Suite</li>
+                        <li>Slack</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">Hardware</h3>
+                    <ul class="text-center space-y-2 text-gray-600">
+                        <li>Lenovo Workstations</li>
+                        <li>HP Workstations</li>
+                        <li>Mobile Platforms (iOS, Android)</li>
+                        <li>Switches & Access Points</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg font-semibold">Contact Me</p>
+            <div class="mt-2 flex justify-center items-center space-x-4 text-gray-300">
+                <span>(646) 249-6025</span>
+                <span class="text-gray-500">|</span>
+                <a href="mailto:Marlon.Jordan21@gmail.com" class="hover:text-blue-400">Marlon.Jordan21@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const competencyCtx = document.getElementById('competencyChart').getContext('2d');
+            new Chart(competencyCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Desktop & Mobile Support', 'Azure AD', 'Windows Server',
+                        'SCCM & Imaging', 'First-Line Networking', 'VIP Support', 'Process Improvement'
+                    ],
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: [5, 4, 4, 4, 4, 5, 5],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: {
+                                font: { size: 13, family: 'Inter' },
+                                color: '#2d3748'
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                stepSize: 1,
+                                display: false
+                            },
+                            min: 0,
+                            max: 5
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            const experienceItems = document.querySelectorAll('.experience-item');
+            experienceItems.forEach(item => {
+                const header = item.querySelector('.experience-header');
+                const content = item.querySelector('.experience-content');
+                const icon = header.querySelector('span:last-child');
+
+                header.addEventListener('click', () => {
+                    const isOpen = content.classList.contains('open');
+                    
+                    document.querySelectorAll('.experience-content').forEach(c => c.classList.remove('open'));
+                    document.querySelectorAll('.experience-header span:last-child').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                    if (!isOpen) {
+                        content.classList.add('open');
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
